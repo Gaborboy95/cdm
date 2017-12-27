@@ -14,7 +14,7 @@ public class TerminalApp extends Application
     public void init() {
         WIP = new Label("CC Lua terminal app WIP!", 5,5);
         this.addComponent(WIP);
-        textWIP = new TextArea(5,10,200,100);
+        textWIP = new TextArea(5,15,100,100);
         this.addComponent(textWIP);
     }
 
