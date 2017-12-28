@@ -86,7 +86,6 @@ public class DiskRecipe extends IForgeRegistryEntry.Impl<IRecipe> implements IRe
         return x >= 2 && y >= 2;
     }
 
-    @Override
     public boolean isHidden()
     {
         return true;

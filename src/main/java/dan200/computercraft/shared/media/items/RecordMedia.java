@@ -45,7 +45,7 @@ public class RecordMedia implements IMedia
     public SoundEvent getAudio( @Nonnull ItemStack stack )
     {
         ItemRecord itemRecord = (ItemRecord)stack.getItem();
-        return itemRecord.sound;
+        return itemRecord.getSound();
     }
     
     @Override

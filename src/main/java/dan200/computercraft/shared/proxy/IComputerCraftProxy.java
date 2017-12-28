@@ -10,7 +10,6 @@ import dan200.computercraft.shared.computer.blocks.TileComputer;
 import dan200.computercraft.shared.network.ComputerCraftPacket;
 import dan200.computercraft.shared.peripheral.diskdrive.TileDiskDrive;
 import dan200.computercraft.shared.peripheral.printer.TilePrinter;
-import dan200.computercraft.shared.turtle.blocks.TileTurtle;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -39,7 +38,6 @@ public interface IComputerCraftProxy
     Object getDiskDriveGUI(InventoryPlayer inventory, TileDiskDrive drive);
     Object getComputerGUI(TileComputer computer);
     Object getPrinterGUI(InventoryPlayer inventory, TilePrinter printer);
-    Object getTurtleGUI(InventoryPlayer inventory, TileTurtle turtle);
     Object getPrintoutGUI(EntityPlayer player, EnumHand hand);
     Object getPocketComputerGUI(EntityPlayer player, EnumHand hand);
 

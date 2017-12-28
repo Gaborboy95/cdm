@@ -49,8 +49,6 @@ import dan200.computercraft.shared.pocket.items.PocketComputerItemFactory;
 import dan200.computercraft.shared.pocket.peripherals.PocketModem;
 import dan200.computercraft.shared.pocket.peripherals.PocketSpeaker;
 import dan200.computercraft.shared.pocket.recipes.PocketComputerUpgradeRecipe;
-import dan200.computercraft.shared.turtle.blocks.TileTurtle;
-import dan200.computercraft.shared.turtle.inventory.ContainerTurtle;
 import dan200.computercraft.shared.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -139,7 +137,7 @@ public abstract class ComputerCraftProxyCommon implements IComputerCraftProxy
         if (item instanceof ItemRecord)
         {
             ItemRecord record = (ItemRecord) item;
-            return StringUtil.translateToLocal( record.displayName );
+            return StringUtil.translateToLocal( record.getRecordNameLocal() );
         }
         return null;
     }
@@ -155,9 +153,6 @@ public abstract class ComputerCraftProxyCommon implements IComputerCraftProxy
 
     @Override
     public abstract Object getPrinterGUI( InventoryPlayer inventory, TilePrinter printer );
-
-    @Override
-    public abstract Object getTurtleGUI( InventoryPlayer inventory, TileTurtle turtle );
 
     @Override
     public abstract Object getPrintoutGUI( EntityPlayer player, EnumHand hand );
@@ -516,16 +511,6 @@ public abstract class ComputerCraftProxyCommon implements IComputerCraftProxy
                     }
                     break;
                 }
-                case ComputerCraft.turtleGUIID:
-                {
-                    TileEntity tile = world.getTileEntity( pos );
-                    if (tile != null && tile instanceof TileTurtle)
-                    {
-                        TileTurtle turtle = (TileTurtle) tile;
-                        return new ContainerTurtle( player.inventory, turtle.getAccess(), turtle.getServerComputer() );
-                    }
-                    break;
-                }
                 case ComputerCraft.printoutGUIID:
                 {
                     return new ContainerHeldItem( player, x == 0 ? EnumHand.MAIN_HAND : EnumHand.MAIN_HAND );
@@ -571,16 +556,6 @@ public abstract class ComputerCraftProxyCommon implements IComputerCraftProxy
                     {
                         TilePrinter printer = (TilePrinter) tile;
                         return getPrinterGUI( player.inventory, printer );
-                    }
-                    break;
-                }
-                case ComputerCraft.turtleGUIID:
-                {
-                    TileEntity tile = world.getTileEntity( pos );
-                    if (tile != null && tile instanceof TileTurtle)
-                    {
-                        TileTurtle turtle = (TileTurtle) tile;
-                        return getTurtleGUI( player.inventory, turtle );
                     }
                     break;
                 }

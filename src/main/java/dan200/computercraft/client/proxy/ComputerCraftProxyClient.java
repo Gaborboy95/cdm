@@ -24,8 +24,6 @@ import dan200.computercraft.shared.peripheral.printer.TilePrinter;
 import dan200.computercraft.shared.pocket.inventory.ContainerPocketComputer;
 import dan200.computercraft.shared.pocket.items.ItemPocketComputer;
 import dan200.computercraft.shared.proxy.ComputerCraftProxyCommon;
-import dan200.computercraft.shared.turtle.blocks.TileTurtle;
-import dan200.computercraft.shared.turtle.entity.TurtleVisionCamera;
 import dan200.computercraft.shared.util.Colour;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -46,9 +44,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -343,10 +338,8 @@ public class ComputerCraftProxyClient extends ComputerCraftProxyCommon
         return new GuiPrinter( inventory, printer );
     }
 
-    @Override
-    public Object getTurtleGUI( InventoryPlayer inventory, TileTurtle turtle )
-    {
-        return new GuiTurtle( turtle.getWorld(), inventory, turtle );
+    public Object getTurtleGUI(InventoryPlayer inventory) {
+        return null;
     }
 
     @Override
@@ -446,71 +439,6 @@ public class ComputerCraftProxyClient extends ComputerCraftProxyCommon
 
     public class ForgeHandlers
     {
-        public ForgeHandlers()
-        {
-        }
-
-        @SubscribeEvent
-        public void onRenderHand( RenderHandEvent event )
-        {
-            // Don't draw the player arm when in turtle vision
-            Minecraft mc = Minecraft.getMinecraft();
-            if( mc.getRenderViewEntity() instanceof TurtleVisionCamera )
-            {
-                event.setCanceled( true );
-            }
-        }
-
-        @SubscribeEvent
-        public void onRenderPlayer( RenderPlayerEvent.Pre event )
-        {
-            Minecraft mc = Minecraft.getMinecraft();
-            if( event.getEntityPlayer().isUser() && mc.getRenderViewEntity() instanceof TurtleVisionCamera )
-            {
-                // HACK: Force the 'livingPlayer' variable to the player, this ensures the entity is drawn
-                //event.getRenderer().getRenderManager().livingPlayer = event.getEntityPlayer();
-            }
-        }
-
-        @SubscribeEvent
-        public void onRenderPlayer( RenderPlayerEvent.Post event )
-        {
-            Minecraft mc = Minecraft.getMinecraft();
-            if( event.getEntityPlayer().isUser() && mc.getRenderViewEntity() instanceof TurtleVisionCamera )
-            {
-                // HACK: Restore the 'livingPlayer' variable to what it was before the RenderPlayerEvent.Pre hack
-                //event.getRenderer().getRenderManager().livingPlayer = mc.getRenderViewEntity();
-            }
-        }
-
-        @SubscribeEvent
-        public void onPreRenderGameOverlay( RenderGameOverlayEvent.Pre event )
-        {
-            Minecraft mc = Minecraft.getMinecraft();
-            if( mc.getRenderViewEntity() instanceof TurtleVisionCamera )
-            {
-                switch( event.getType() )
-                {
-                    case HELMET:
-                    case PORTAL:
-                    //case CROSSHAIRS:
-                    case BOSSHEALTH:
-                    case ARMOR:
-                    case HEALTH:
-                    case FOOD:
-                    case AIR:
-                    case HOTBAR:
-                    case EXPERIENCE:
-                    case HEALTHMOUNT:
-                    case JUMPBAR:
-                    {
-                        event.setCanceled( true );
-                        break;
-                    }
-                }
-            }
-        }
-
         @SubscribeEvent
         public void onTick( TickEvent.ClientTickEvent event )
         {
@@ -540,10 +468,14 @@ public class ComputerCraftProxyClient extends ComputerCraftProxyCommon
             this.disk = disk;
         }
 
-        @Override
         public int getColorFromItemstack( @Nonnull ItemStack stack, int layer )
         {
             return layer == 0 ? 0xFFFFFF : disk.getColour( stack );
+        }
+
+        @Override
+        public int colorMultiplier(ItemStack stack, int tintIndex) {
+            return 0;
         }
     }
 }

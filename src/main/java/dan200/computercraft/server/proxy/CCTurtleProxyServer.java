@@ -6,8 +6,6 @@
 
 package dan200.computercraft.server.proxy;
 
-import dan200.computercraft.shared.proxy.CCTurtleProxyCommon;
-
 public class CCTurtleProxyServer extends CCTurtleProxyCommon
 {
     public CCTurtleProxyServer()
