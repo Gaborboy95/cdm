@@ -1,17 +1,29 @@
 package com.gaborboy95.apps.app;
 
 import com.mrcrayfish.device.api.app.Application;
-import dan200.computercraft.ComputerCraft;
-import dan200.computercraft.core.computer.Computer;
+import dan200.computercraft.shared.common.ITerminal;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TerminalApp extends Application
 {
 
+
     @Override
     public void init() {
         this.setDefaultWidth(500);
         this.setDefaultHeight(300);
+        ITerminal terminal = new ITerminal() {
+            @Override
+            public int getTerminal() {
+                return 0;
+            }
+
+            @Override
+            public boolean isColour() {
+                return true;
+            }
+        };
+
     }
 
     @Override
