@@ -17,7 +17,6 @@ import dan200.computercraft.api.peripheral.IPeripheralProvider;
 import dan200.computercraft.api.permissions.ITurtlePermissionProvider;
 import dan200.computercraft.api.pocket.IPocketUpgrade;
 import dan200.computercraft.api.redstone.IBundledRedstoneProvider;
-import dan200.computercraft.api.turtle.ITurtleUpgrade;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -179,23 +178,7 @@ public final class ComputerCraftAPI
      * this during the load() method of your mod.
      *
      * @param upgrade The turtle upgrade to register.
-     * @see ITurtleUpgrade
      */
-    public static void registerTurtleUpgrade( @Nonnull ITurtleUpgrade upgrade )
-    {
-        if( upgrade != null )
-        {
-            findCC();
-            if( computerCraft_registerTurtleUpgrade != null )
-            {
-                try {
-                    computerCraft_registerTurtleUpgrade.invoke( null, upgrade );
-                } catch( Exception e ) {
-                    // It failed
-                }
-            }
-        }
-    }
 
     /**
      * Registers a bundled redstone handler to provide bundled redstone output for blocks.
@@ -333,9 +316,6 @@ public final class ComputerCraftAPI
                 } );
                 computerCraft_registerPeripheralProvider = findCCMethod( "registerPeripheralProvider", new Class<?>[] {
                     IPeripheralProvider.class
-                } );
-                computerCraft_registerTurtleUpgrade = findCCMethod( "registerTurtleUpgrade", new Class<?>[] {
-                    ITurtleUpgrade.class
                 } );
                 computerCraft_registerBundledRedstoneProvider = findCCMethod( "registerBundledRedstoneProvider", new Class<?>[] {
                     IBundledRedstoneProvider.class

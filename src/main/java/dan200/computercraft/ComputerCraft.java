@@ -17,7 +17,6 @@ import dan200.computercraft.api.peripheral.IPeripheralProvider;
 import dan200.computercraft.api.permissions.ITurtlePermissionProvider;
 import dan200.computercraft.api.pocket.IPocketUpgrade;
 import dan200.computercraft.api.redstone.IBundledRedstoneProvider;
-import dan200.computercraft.api.turtle.ITurtleUpgrade;
 import dan200.computercraft.core.apis.AddressPredicate;
 import dan200.computercraft.core.filesystem.ComboMount;
 import dan200.computercraft.core.filesystem.FileMount;
@@ -44,12 +43,8 @@ import dan200.computercraft.shared.pocket.items.ItemPocketComputer;
 import dan200.computercraft.shared.pocket.peripherals.PocketModem;
 import dan200.computercraft.shared.pocket.peripherals.PocketSpeaker;
 import dan200.computercraft.shared.proxy.IComputerCraftProxy;
-import dan200.computercraft.shared.turtle.blocks.BlockTurtle;
-import dan200.computercraft.shared.turtle.blocks.TileTurtle;
-import dan200.computercraft.shared.turtle.upgrades.*;
 import dan200.computercraft.shared.util.*;
 import io.netty.buffer.Unpooled;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -57,7 +52,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -136,9 +130,6 @@ public class ComputerCraft
     public static final int terminalWidth_computer = 51;
     public static final int terminalHeight_computer = 19;
 
-    public static final int terminalWidth_turtle = 39;
-    public static final int terminalHeight_turtle = 13;
-
     public static final int terminalWidth_pocketComputer = 26;
     public static final int terminalHeight_pocketComputer = 20;
 
@@ -159,9 +150,6 @@ public class ComputerCraft
         public static BlockComputer computer;
         public static BlockPeripheral peripheral;
         public static BlockCable cable;
-        public static BlockTurtle turtle;
-        public static BlockTurtle turtleExpanded;
-        public static BlockTurtle turtleAdvanced;
         public static BlockCommandComputer commandComputer;
         public static BlockAdvancedModem advancedModem;
     }
@@ -173,19 +161,6 @@ public class ComputerCraft
         public static ItemPrintout printout;
         public static ItemTreasureDisk treasureDisk;
         public static ItemPocketComputer pocketComputer;
-    }
-
-    public static class Upgrades
-    {
-        public static TurtleModem wirelessModem;
-        public static TurtleCraftingTable craftingTable;
-        public static TurtleSword diamondSword;
-        public static TurtleShovel diamondShovel;
-        public static TurtleTool diamondPickaxe;
-        public static TurtleAxe diamondAxe;
-        public static TurtleHoe diamondHoe;
-        public static TurtleModem advancedModem;
-        public static TurtleSpeaker turtleSpeaker;
     }
 
     public static class PocketUpgrades
@@ -251,8 +226,6 @@ public class ComputerCraft
     @SidedProxy( clientSide = "dan200.computercraft.client.proxy.ComputerCraftProxyClient", serverSide = "dan200.computercraft.server.proxy.ComputerCraftProxyServer" )
     public static IComputerCraftProxy proxy;
 
-    @SidedProxy( clientSide = "dan200.computercraft.client.proxy.CCTurtleProxyClient", serverSide = "dan200.computercraft.server.proxy.CCTurtleProxyServer" )
-    public static ICCTurtleProxy turtleProxy;
 
     public ComputerCraft()
     {
@@ -355,7 +328,6 @@ public class ComputerCraft
         networkEventChannel.register( new PacketHandler() );
 
         proxy.preInit();
-        turtleProxy.preInit();
     }
 
     public static void syncConfig() {
@@ -393,7 +365,6 @@ public class ComputerCraft
     public void init( FMLInitializationEvent event )
     {
         proxy.init();
-        turtleProxy.init();
     }
 
     @Mod.EventHandler
@@ -477,12 +448,6 @@ public class ComputerCraft
     {
         BlockPos pos = printer.getPos();
         player.openGui( ComputerCraft.instance, ComputerCraft.printerGUIID, player.getEntityWorld(), pos.getX(), pos.getY(), pos.getZ() );
-    }
-
-    public static void openTurtleGUI( EntityPlayer player, TileTurtle turtle )
-    {
-        BlockPos pos = turtle.getPos();
-        player.openGui( instance, ComputerCraft.turtleGUIID, player.getEntityWorld(), pos.getX(), pos.getY(), pos.getZ() );
     }
 
     public static void openPrintoutGUI( EntityPlayer player, EnumHand hand )
@@ -987,40 +952,5 @@ public class ComputerCraft
             return null;
         }
         return new File( new File( path ).getParentFile(), "../.." );
-    }
-
-    public static void registerTurtleUpgrade( ITurtleUpgrade upgrade )
-    {
-        turtleProxy.registerTurtleUpgrade( upgrade );
-    }
-
-    public static ITurtleUpgrade getTurtleUpgrade( String id )
-    {
-        return turtleProxy.getTurtleUpgrade( id );
-    }
-
-    public static ITurtleUpgrade getTurtleUpgrade( int legacyID )
-    {
-        return turtleProxy.getTurtleUpgrade( legacyID );
-    }
-
-    public static ITurtleUpgrade getTurtleUpgrade( @Nonnull ItemStack item )
-    {
-        return turtleProxy.getTurtleUpgrade( item );
-    }
-
-    public static void addAllUpgradedTurtles( NonNullList<ItemStack> list )
-    {
-        turtleProxy.addAllUpgradedTurtles( list );
-    }
-
-    public static void setEntityDropConsumer( Entity entity, IEntityDropConsumer consumer )
-    {
-        turtleProxy.setEntityDropConsumer( entity, consumer );
-    }
-
-    public static void clearEntityDropConsumer( Entity entity )
-    {
-        turtleProxy.clearEntityDropConsumer( entity );
     }
 }

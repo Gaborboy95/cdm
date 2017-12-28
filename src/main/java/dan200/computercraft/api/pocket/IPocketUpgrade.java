@@ -2,7 +2,6 @@ package dan200.computercraft.api.pocket;
 
 import dan200.computercraft.api.ComputerCraftAPI;
 import dan200.computercraft.api.peripheral.IPeripheral;
-import dan200.computercraft.api.turtle.ITurtleUpgrade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -13,7 +12,6 @@ import javax.annotation.Nullable;
 /**
  * Additional peripherals for pocket computers.
  *
- * This is similar to {@link dan200.computercraft.api.turtle.ITurtleUpgrade}.
  */
 public interface IPocketUpgrade
 {
@@ -38,7 +36,6 @@ public interface IPocketUpgrade
      * An example of a built-in adjectives is "Wireless" - this is converted to "Wireless Pocket Computer".
      *
      * @return The unlocalised adjective.
-     * @see ITurtleUpgrade#getUnlocalisedAdjective()
      */
     @Nonnull
     String getUnlocalisedAdjective();

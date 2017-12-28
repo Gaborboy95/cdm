@@ -10,7 +10,6 @@ import dan200.computercraft.shared.computer.blocks.TileComputer;
 import dan200.computercraft.shared.peripheral.diskdrive.TileDiskDrive;
 import dan200.computercraft.shared.peripheral.printer.TilePrinter;
 import dan200.computercraft.shared.proxy.ComputerCraftProxyCommon;
-import dan200.computercraft.shared.turtle.blocks.TileTurtle;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.EnumHand;
@@ -33,12 +32,6 @@ public class ComputerCraftProxyServer extends ComputerCraftProxyCommon
     public void init()
     {
         super.init();
-    }
-
-    @Override
-    public Object getTurtleGUI( InventoryPlayer inventory, TileTurtle turtle )
-    {
-        return null;
     }
 
     @Override
