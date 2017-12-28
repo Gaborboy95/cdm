@@ -42,7 +42,7 @@ public class ClientTerminal implements ITerminal
     // ITerminal implementation
 
     @Override
-    public int getTerminal()
+    public Terminal getTerminal()
     {
         return m_terminal;
     }
