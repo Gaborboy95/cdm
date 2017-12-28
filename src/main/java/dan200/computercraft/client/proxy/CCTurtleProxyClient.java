@@ -188,7 +188,7 @@ public class CCTurtleProxyClient extends CCTurtleProxyCommon
         }
     }
 
-    private static class TurtleItemColour implements IItemColor
+    private static abstract class TurtleItemColour implements IItemColor
     {
         @Override
         public int getColorFromItemstack( @Nonnull ItemStack stack, int tintIndex )
