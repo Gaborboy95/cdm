@@ -15,7 +15,7 @@ public class TerminalApp extends Application
         ITerminal terminal = new ITerminal() {
             @Override
             public int getTerminal() {
-                return 0;
+                return Integer.parseInt(null);
             }
 
             @Override
