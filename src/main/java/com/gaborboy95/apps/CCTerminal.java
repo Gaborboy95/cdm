@@ -4,6 +4,7 @@ package com.gaborboy95.apps;
 
 import com.gaborboy95.apps.app.TerminalApp;
 import com.mrcrayfish.device.api.ApplicationManager;
+import com.mrcrayfish.device.api.app.Application;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -12,9 +13,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 public class CCTerminal
 {
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event)
-    {
-        ApplicationManager.registerApplication(new ResourceLocation(Reference.MOD_ID,"terminalapp"), TerminalApp.class);
+    public void init(FMLInitializationEvent event) {
+        final Application terminalapp = ApplicationManager.registerApplication(new ResourceLocation(Reference.MOD_ID, "terminalapp"), TerminalApp.class);
     }
 
 }
