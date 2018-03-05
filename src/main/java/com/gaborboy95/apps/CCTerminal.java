@@ -14,7 +14,8 @@ public class CCTerminal
 {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        final Application terminalapp = ApplicationManager.registerApplication(new ResourceLocation(Reference.MOD_ID, "terminalapp"), TerminalApp.class);
+        Application terminalapp;
+        terminalapp = ApplicationManager.registerApplication(new ResourceLocation(Reference.MOD_ID, "terminalapp"), TerminalApp.class);
     }
 
 }
