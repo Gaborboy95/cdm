@@ -28,7 +28,8 @@ public class TerminalApp extends Application
             public void onClick(int i, int i1, int i2) {
                 String script = textfield.getText();
                 LuaValue lv = JsePlatform.standardGlobals();
-                lv.get("dofile").call( LuaValue.valueOf(script) );
+                LuaValue print = lv.get("dofile").call( LuaValue.valueOf(script) );
+                textfield.setText(String.valueOf(print));
             }
         });
 
