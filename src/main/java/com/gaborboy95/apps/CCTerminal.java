@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
 @Mod(
         modid = "cctapp",
-        name = "Computercraft terminal for cdm",
+        name = "Computercraft terminal and IDE for cdm",
         version = "0.1.3",
         acceptedMinecraftVersions = "[1.12.2]",
         dependencies = "required-after:cdm@[0.3.0,)"
