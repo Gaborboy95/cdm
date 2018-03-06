@@ -22,12 +22,7 @@ public class TerminalApp extends Application
         this.addComponent(textfield);
         this.addComponent(btn);
 
-        btn.setClickListener((i, i1, i2) -> {
-            String script = textfield.getText();
-            LuaValue lv = JsePlatform.standardGlobals();
-            LuaValue print = lv.get("dofile").call( LuaValue.valueOf(script) );
-            textfield.setText(String.valueOf(print));
-        });
+        btn.setClickListener(this::onClick);
 
     }
 
@@ -40,5 +35,15 @@ public class TerminalApp extends Application
     @Override
     public void save(NBTTagCompound tagCompound) {
 
+    }
+
+    private void onClick(int i, int i1, int i2) {
+        String script = textfield.getText();
+        if (script.length() > 0)
+        {
+            LuaValue lv = JsePlatform.standardGlobals();
+            LuaValue print = lv.get("dofile").call(LuaValue.valueOf(script));
+            textfield.setText(String.valueOf(print));
+        }
     }
 }
