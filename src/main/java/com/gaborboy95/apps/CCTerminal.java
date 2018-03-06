@@ -4,18 +4,24 @@ package com.gaborboy95.apps;
 
 import com.gaborboy95.apps.app.TerminalApp;
 import com.mrcrayfish.device.api.ApplicationManager;
-import com.mrcrayfish.device.api.app.Application;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, acceptedMinecraftVersions = Reference.MC_VERSION, dependencies = Reference.DEPENDS)
+@Mod(
+        modid = "cctapp",
+        name = "Computercraft terminal for cdm",
+        version = "0.1.3",
+        acceptedMinecraftVersions = "[1.12.2]",
+        dependencies = "required-after:cdm@[0.3.0,)"
+)
+
 public class CCTerminal
 {
+
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event) {
-        Application terminalapp;
-        terminalapp = ApplicationManager.registerApplication(new ResourceLocation(Reference.MOD_ID, "terminalapp"), TerminalApp.class);
+    private void init(FMLInitializationEvent event) {
+        ApplicationManager.registerApplication(new ResourceLocation("cctapp", "terminalapp"), TerminalApp.class);
     }
 
 }
