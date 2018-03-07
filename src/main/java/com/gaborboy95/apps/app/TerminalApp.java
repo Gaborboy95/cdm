@@ -20,9 +20,15 @@ public class TerminalApp extends Application
     private TextArea cmdLine;
     private boolean isStartup = true;
     private StandardLayout layoutMain;
+    String newFileName;
 
     private void onClickNewFile(int i, int i1, int i2)
     {
+        Dialog dialog = new Dialog.Input();
+        dialog.setTitle("Save name");
+        this.openDialog(dialog);
+        newFileName = null;
+
         cmdLine.setVisible(true);
         intro.setVisible(false);
     }
@@ -64,7 +70,9 @@ public class TerminalApp extends Application
 
     private void onClickSaveFile(int i, int i1, int i2)
     {
-        File saveFile = new File(newFileName,this,);
+        NBTTagCompound data = new NBTTagCompound();
+        data.setString("appSave", cmdLine.getText());
+        File saveFile = new File(newFileName,this,data);
         Dialog saveD;
         saveD = new Dialog.SaveFile(this,saveFile);
     }
