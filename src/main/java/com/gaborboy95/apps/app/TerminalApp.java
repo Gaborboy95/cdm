@@ -11,8 +11,8 @@ import com.mrcrayfish.device.api.io.File;
 import com.mrcrayfish.device.programs.system.layout.StandardLayout;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextFormatting;
+import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaError;
-import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
@@ -127,11 +127,11 @@ public class TerminalApp extends Application
             cmdLine.setVisible(false);
             scriptLine.setVisible(true);
 
-            LuaTable gl = JsePlatform.standardGlobals();
+            Globals gl = JsePlatform.standardGlobals();
 
             try
             {
-                LuaValue lv = gl.load(LuaValue.valueOf(script)).call();
+                LuaValue lv = gl.load(script).call();
 
                 scriptLine.setText(lv.call().toString());
             }
