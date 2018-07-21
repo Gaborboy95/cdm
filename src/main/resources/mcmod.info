@@ -1,15 +1,15 @@
 [
 {
-  "modid": "app_computercraft_terminal",
-  "name": "CDM Computercraft addon",
-  "description": "Ported computercraft terminal to CDM!",
-  "version": "0.2.0-pre6",
+  "modid": "gabsapps",
+  "name": "GabsApps Application 'Bundle'",
+  "description": "This addon for CDM adds a bundle of apps to the device mod.",
+  "version": "0.0.2",
   "mcversion": "1.12.2",
   "url": "",
   "updateUrl": "",
   "authorList": [Gaborboy95"],
-  "credits": "Gaborboy95 For porting ComputerCraft to CDM",
-  "logoFile": "",
+  "credits": "Gaborboy95 For making the apps!",
+  "logoFile": "gabsapps:textures/icon/cheeseide.png",
   "screenshots": [],
   "dependencies": [],
   "parent": "cdm"
