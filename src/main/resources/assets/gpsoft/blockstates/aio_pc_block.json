@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "normal": { "model": "gpsoft:aio_pc_block" },
+    "facing=north": { "model": "gpsoft:aio_pc_block", "y": 180 },
+    "facing=south": { "model": "gpsoft:aio_pc_block" },
+    "facing=west": { "model": "gpsoft:aio_pc_block", "y": 90 },
+    "facing=east": { "model": "gpsoft:aio_pc_block", "y": 270 }
+  }
+}

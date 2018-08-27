@@ -1,4 +1,4 @@
-package hu.gpsoft.apps.app;
+package hu.gpsoft.apps;
 
 import com.mrcrayfish.device.api.app.Application;
 import com.mrcrayfish.device.api.app.Icons;
@@ -17,7 +17,7 @@ public class CheeseIDE extends Application
         ideLayout = new Layout(362, 164);
         this.setCurrentLayout(ideLayout);
 
-        welcomeLabel = new Label("Hello there!", 10, 10);
+        welcomeLabel = new Label("Welcome to GPSoft CheeseIDE!", 10, 10);
         ideLayout.addComponent(welcomeLabel);
 
         fileButton = new Button(167,68, 28, 28, Icons.FILE);
