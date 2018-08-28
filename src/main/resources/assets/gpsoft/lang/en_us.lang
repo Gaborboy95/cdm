@@ -1,2 +1,9 @@
+# Initial release
+
 item.screen_piece.name=LCD
 tile.aio_pc_block.name=All In One PC
+
+# 2nd update
+
+item.cd.name=CD
+item.telephone.name=GpSoft Mobile 3311

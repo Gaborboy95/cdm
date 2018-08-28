@@ -6,6 +6,7 @@ import com.mrcrayfish.device.api.app.Application;
 import com.mrcrayfish.device.core.Laptop;
 import hu.gpsoft.apps.CheeseIDE;
 import com.mrcrayfish.device.api.ApplicationManager;
+import hu.gpsoft.blocks.tileentity.TileEntityAIO;
 import hu.gpsoft.proxy.CommonProxy;
 import hu.gpsoft.util.Reference;
 import net.minecraft.util.ResourceLocation;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(
         modid = "gpsoft",
@@ -40,6 +42,7 @@ public class GPSoft
     private void init(FMLInitializationEvent event) {
         final Application application = ApplicationManager.registerApplication(new ResourceLocation("gpsoft", "cheeseide"), CheeseIDE.class);
 
+        GameRegistry.registerTileEntity(TileEntityAIO.class, "gpsoft:TileEntityAIO");
     }
 
     @Mod.EventHandler
