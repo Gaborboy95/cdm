@@ -1,9 +1,13 @@
-### **CCTerminal mod for cdm**
+### **Gabor's things addon for cdm!**
 ***
 
-CCTerminal is a extension mod for MrCrayfishDeviceMod, that is using the computercraft mod.
+This mod is currently developped by Gaborboy95.
+It adds things that I want to be in cdm.
 
 ***
-### **What it adds?**
+### **What does it add?**
 ***
-* It adds a CD Drive for the laptop, and LUA for computercraft.
+- An all in one pc
+- CDs!
+- A telephone
+- lot of things in the future!
