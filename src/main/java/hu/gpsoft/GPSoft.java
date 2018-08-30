@@ -7,8 +7,17 @@ import com.mrcrayfish.device.core.Laptop;
 import hu.gpsoft.apps.CheeseIDE;
 import com.mrcrayfish.device.api.ApplicationManager;
 import hu.gpsoft.blocks.tileentity.TileEntityAIO;
+import hu.gpsoft.blocks.tileentity.TileEntityMonitor;
 import hu.gpsoft.proxy.CommonProxy;
 import hu.gpsoft.util.Reference;
+import net.hdt.huskylib2.blocks.BlockColored;
+import net.hdt.huskylib2.items.ItemColored;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -16,6 +25,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import static hu.gpsoft.init.ModBlocks.aios;
 
 @Mod(
         modid = "gpsoft",
@@ -42,7 +53,16 @@ public class GPSoft
     private void init(FMLInitializationEvent event) {
         final Application application = ApplicationManager.registerApplication(new ResourceLocation("gpsoft", "cheeseide"), CheeseIDE.class);
 
-        GameRegistry.registerTileEntity(TileEntityAIO.class, "gpsoft:TileEntityAIO");
+        GameRegistry.registerTileEntity(TileEntityMonitor.class, "gpsoft:aio_pc_block");
+
+        ItemColors items = Minecraft.getMinecraft().getItemColors();
+        BlockColors blocks = Minecraft.getMinecraft().getBlockColors();
+
+        IItemColor handlerItems = (s, t) -> t == 0 ? ((ItemColored) s.getItem()).color.getColorValue() : 0xFFFFFF;
+        items.registerItemColorHandler((stack, tintIndex) -> blocks.colorMultiplier(((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata()), null, null, tintIndex), aios);
+
+        IBlockColor handlerBlocks = (s, w, p, t) -> t == 0 ? ((BlockColored) s.getBlock()).color.getColorValue() : 0xFFFFFF;
+        blocks.registerBlockColorHandler(handlerBlocks, aios);
     }
 
     @Mod.EventHandler

@@ -2,7 +2,6 @@
 	"credit": "Made by Gabor at GPSoft.",
 	"textures": {
 		"0": "blocks/anvil_base",
-		"1": "blocks/concrete_red",
 		"2": "blocks/concrete_black",
 		"3": "gpsoft:model/gpsoft",
 		"4": "blocks/concrete_light_blue",

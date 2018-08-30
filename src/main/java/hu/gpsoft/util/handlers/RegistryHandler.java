@@ -10,6 +10,8 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import static hu.gpsoft.init.ModBlocks.aios;
+
 @Mod.EventBusSubscriber
 public class RegistryHandler
 {
@@ -22,7 +24,7 @@ public class RegistryHandler
     @SubscribeEvent
     public static void onBlockRegister(RegistryEvent.Register<Block> event)
     {
-        event.getRegistry().registerAll(ModBlocks.BLOCKS.toArray(new Block[0]));
+        event.getRegistry().registerAll(aios);
     }
 
     @SubscribeEvent
